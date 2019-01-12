@@ -35,6 +35,7 @@ var playerCount = 0;
 var players = [];
 var starters = [];
 var subs = [];
+var gameCount = 0;
 function createPlayers() {
     if(playerCount<3) {
         console.log("New Player");
@@ -100,6 +101,33 @@ function createPlayers() {
         for (var x = 0; x<players.length; x++) {
             players[x].printStats();
         }
+        playGame();
     }
 }
 createPlayers();
+var score = 0;
+var teamOffense = 0;
+var teamDefense = 0;
+function playGame() {
+    if(starters.length === 2 && gameCount<5) {
+        var randomOffense = Math.floor(Math.random()*20)+1;
+        var randomDefense = Math.floor(Math.random()*20)+1;
+        
+        for (var i=0; i<starters.length; i++) {
+            teamOffense += starters[i].offense;
+            teamDefense += starters[i].defense;
+        }
+        
+        if (randomOffense<teamOffense) {
+            score ++;
+        }
+        
+        if (randomDefense>teamDefense) {
+            score --;
+        }
+
+        console.log(randomOffense, randomDefense, teamOffense, teamDefense, score);
+        playGame();
+    }
+}
+
