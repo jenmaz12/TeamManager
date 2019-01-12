@@ -80,8 +80,8 @@ function createPlayers() {
             var newPlayer = new Player(
                 answers.name,
                 answers.position,
-                answers.offense,
-                answers.defense,
+                parseInt(answers.offense),
+                parseInt(answers.defense),
                 answers.starter
             );
             players.push(newPlayer);
